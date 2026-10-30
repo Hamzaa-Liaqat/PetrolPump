@@ -1,0 +1,163 @@
+@import "tailwindcss";
+
+/* "Sand, Marigold aur Lagoon": garam halka background, marigold (sunehra) asli rang,
+   lagoon (halka firozi) madadgar rang. Neela, gehra hara, jamni ya kala dashboard nahi. */
+@theme {
+  /* --- Surface aur text (dark theme) --- */
+  --color-sand-50: #1a1b16;   /* page ka background */
+  --color-card: #151515;      /* cards, tables, dialogs */
+  --color-sand-100: #1f201b;  /* card ke andar chhote khanay, hover */
+  --color-sand-200: #262722;  /* lakeerein (dividers) */
+  --color-sand-300: #30312c;  /* borders */
+  --color-ink: #f0f1ec;       /* asli text */
+  --color-ink-soft: #b7b8b3;  /* dusra text */
+  --color-ink-faint: #8d8e89; /* placeholder, bohat halka text */
+
+  /* --- Header (Navbar) --- */
+  --color-header: #085042;
+  --color-header-ink: #ecffff;
+  --color-header-soft: #b0f4e5;
+
+  /* --- Brand (teal): buttons, tabs, focus --- */
+  --color-marigold-100: #0f3a2f;
+  --color-marigold-400: #12785a;
+  --color-marigold-500: #106e56;
+  --color-marigold-600: #1d9e77;
+  --color-marigold-800: #9fe1cb;
+
+  /* --- Kamyabi / munafa / present (green) --- */
+  --color-lagoon-100: #1c2b10;
+  --color-lagoon-500: #4a7a1a;
+  --color-lagoon-700: #97c459;
+  --color-lagoon-800: #c0dd97;
+
+  /* --- Ghalti / nuqsan / absent (red) --- */
+  --color-coral-100: #3a1a18;
+  --color-coral-500: #b8453a;
+  --color-coral-600: #b83f2b;
+  --color-coral-800: #f09595;
+
+  /* --- Info (lavender) --- */
+  --color-periwinkle-100: #1f2040;
+  --color-periwinkle-500: #675fc8;
+  --color-periwinkle-800: #cecbf6;
+
+  /* --- Khabardar (amber) --- */
+  --color-warn: #fac775;
+  --color-warn-bg: #3a2a0c;
+  --color-amber: #f19e28;
+  --color-stone: #b5b2a9;
+
+  /* --- Halke (pastel) chips aur highlight cards, jaisa design mein --- */
+  --color-cream: #fcedda;
+  --color-cream-ink: #633806;
+  --color-cream-deep: #412402;
+  --color-mint: #e2f5ef;
+  --color-mint-ink: #085041;
+  --color-mint-deep: #04342c;
+  --color-chip-lav: #eeedfe;
+  --color-chip-lav-ink: #3c3489;
+  --color-chip-blue: #e6f1fb;
+  --color-chip-blue-ink: #0c447c;
+  --color-chip-coral: #faece7;
+  --color-chip-coral-ink: #993c1d;
+  --color-chip-green: #ebf5dd;
+  --color-chip-green-ink: #27500a;
+  --color-chip-red: #fdebeb;
+  --color-chip-red-ink: #a32d2d;
+}
+
+@layer base {
+  :root {
+    color-scheme: dark; /* date picker, scrollbar, select dropdown bhi dark */
+  }
+  html {
+    background-color: var(--color-sand-50);
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background-color: var(--color-sand-50);
+    color: var(--color-ink);
+  }
+  ::placeholder {
+    color: var(--color-ink-faint);
+    opacity: 1;
+  }
+}
+
+/* --- Har device ke liye --- */
+@media (max-width: 640px) {
+  /* iPhone par 16px se chhote field par page khud zoom ho jata hai */
+  input,
+  select,
+  textarea {
+    font-size: 16px;
+  }
+}
+@media (pointer: coarse) {
+  /* Ungli ke liye kam az kam 44px ka nishana */
+  button,
+  select,
+  input:not([type='checkbox']):not([type='radio']) {
+    min-height: 44px;
+  }
+}
+
+
+
+@layer base {
+  html {
+    background-color: var(--color-sand-50);
+    color: var(--color-ink);
+  }
+  body {
+    margin: 0;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-marigold-600);
+    outline-offset: 2px;
+  }
+}
+
+
+/* Jin ko animation se takleef hoti hai (system setting "reduce motion") unke liye sab halka */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+
+/* Chhoti screen par table ki har row ek card ban jati hai (table par class "stack", har td par data-label) */
+@media (max-width: 767px) {
+  table.stack { min-width: 0; }
+  table.stack thead { display: none; }
+  table.stack,
+  table.stack tbody { display: block; }
+  table.stack tr { display: block; padding: 0.75rem 0; }
+  table.stack td {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.25rem 0;
+    text-align: right;
+  }
+  table.stack td::before {
+    content: attr(data-label);
+    flex: none;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-ink-soft);
+    text-align: left;
+  }
+}

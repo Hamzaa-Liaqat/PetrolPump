@@ -1,0 +1,41 @@
+# --- Secrets: kabhi push nahi ---
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# --- Python / Django ---
+venv/
+.venv/
+env/
+__pycache__/
+*.py[cod]
+*.sqlite3
+*.sqlite3-journal
+staticfiles/
+media/
+*.log
+.pytest_cache/
+.coverage
+htmlcov/
+*.egg-info/
+
+# --- Node / React ---
+node_modules/
+dist/
+build/
+coverage/
+.vite/
+*.tsbuildinfo
+npm-debug.log*
+yarn-error.log*
+
+# --- Editor / OS ---
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
+desktop.ini
+~$*
